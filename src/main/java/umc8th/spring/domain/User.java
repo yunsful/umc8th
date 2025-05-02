@@ -6,7 +6,9 @@ import umc8th.spring.domain.base.BaseEntity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -45,6 +47,6 @@ public class User extends BaseEntity {
     @JoinColumn(name = "social_login_id")
     private SocialLogin socialLogin;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Review> reviewList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
 }
